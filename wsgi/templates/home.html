@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} Decoder {% endblock title %}
+
+{% block content %}
+    <div class="jumbotron">
+    <div class="container">
+        <h1> ENDEC system !</h1>
+        <p> This is a simple ENDEC(encode/decode) system, for which improves efficiency.</p>
+
+    </div>
+        </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>ASCII/Bin/HEX..</h2>
+          <p>Traslating between the most common expression of data, in the help of ASCII middleware system. </p>
+          <p><a class="btn btn-default" href="https://en.wikipedia.org/wiki/ASCII" role="button">View details »</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>URI/URL/...</h2>
+          <p>The complete address of one in the 3W world. URL encoding converts characters into a format that can be transmitted over the Internet.</p>
+          <p><a class="btn btn-default" href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier" role="button">View details »</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Crypto</h2>
+          <p>Crypto is mostly interesting topic. We simply put basics here. Long live Ceasar Cipher.</p>
+          <p><a class="btn btn-default" href="https://en.wikipedia.org/wiki/Caesar_cipher" role="button">View details »</a></p>
+        </div>
+      </div>
+
+    </div>
+
+{% endblock content %}
+{% block footer_data %}
+© Chumeng Zheng 2015
+{% endblock footer_data%}

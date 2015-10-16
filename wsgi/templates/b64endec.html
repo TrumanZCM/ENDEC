@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} Decoder {% endblock title %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="form-group">
+            <label for="url"> Base64:</label>
+            <textarea class="form-control" rows="10" id="b64text"></textarea>
+        </div>
+        <div>
+        <button type="submit" class="btn btn-default btn-md" style="margin: 5px;" id="b64encoder">Encode</button>
+        <button type="submit" class="btn btn-default btn-md" style="margin: 0px;" id="b64decoder">Decode</button>
+        </div>
+
+        <div class="form-group">
+            <label for="url"> Output:</label>
+            <textarea class="form-control" rows="10" id="b64result"></textarea>
+        </div>
+    </div>
+
+    </div>
+
+{% endblock content %}
+{% block scripts %}
+<script type="text/javascript">
+$("#b64encoder").click(function () {
+    var input = $("#b64text").val().trim();
+    $('#b64result').text(btoa(input));
+});
+
+$("#b64decoder").click(function () {
+    var input = $("#b64text").val();
+    $('#b64result').text(atob(input));
+});
+</script>
+{% endblock scripts%}

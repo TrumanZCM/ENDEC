@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} Decoder {% endblock title %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="form-group">
+            <label for="url"> Octagonal:</label>
+            <textarea class="form-control" rows="10" id="octtext"></textarea>
+        </div>
+        <div>
+        <button type="submit" class="btn btn-default btn-md" style="margin: 5px;" id="octencoder">Encode</button>
+        <button type="submit" class="btn btn-default btn-md" style="margin: 0px;" id="octdecoder">Decode</button>
+        </div>
+
+        <div class="form-group">
+            <label for="url"> Output:</label>
+            <textarea class="form-control" rows="10" id="octresult"></textarea>
+        </div>
+    </div>
+
+    </div>
+
+{% endblock content %}
+{% block scripts %}
+<script type="text/javascript">
+$("#octencoder").click(function () {
+    var input = $("#octtext").val().trim();
+    var oct = '';
+    for (var i = 0; i < input.length; i++) {
+        oct += ' ' + ('0000' + input.charCodeAt(i).toString(8)).slice(-4);
+    }
+    $('#octresult').text(oct);
+});
+
+$("#octdecoder").click(function () {
+    var input = $("#octtext").val().replace(' ', '');
+    var str = '';
+    for (var i = 0; i < input.length; i += 4)
+        str += String.fromCharCode(parseInt(input.substr(i, 4), 8));
+    $('#octresult').text(str);
+});
+
+</script>
+{% endblock scripts%}

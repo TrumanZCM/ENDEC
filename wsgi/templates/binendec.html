@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} Decoder {% endblock title %}
+
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="form-group">
+            <label for="url"> Binary:</label>
+            <textarea class="form-control" rows="10" id="bintext"></textarea>
+        </div>
+        <div>
+        <button type="submit" class="btn btn-default btn-md" style="margin: 5px;" id="binencoder">Encode</button>
+        <button type="submit" class="btn btn-default btn-md" style="margin: 0px;" id="bindecoder">Decode</button>
+        </div>
+
+        <div class="form-group" style="border-top-width: 10px;">
+            <label for="url"> Output:</label>
+            <textarea class="form-control" rows="10" id="binresult"></textarea>
+        </div>
+    </div>
+
+    </div>
+
+{% endblock content %}
+{% block scripts %}
+<script type="text/javascript">
+$("#binencoder").click(function () {
+    var input = $("#bintext").val().trim();
+    var bin = '';
+    for (var i = 0; i < input.length; i++) {
+        bin += ' ' + ('00000000' + input.charCodeAt(i).toString(2)).slice(-8);
+    }
+    $('#binresult').text(bin);
+});
+
+$("#bindecoder").click(function () {
+    var input = $("#bintext").val().replace(' ', '');
+    console.log(input);
+    // TODO: Could consider add a validation
+    if (input.length % 8 != 0) {
+        $('#binresult').text("Invalid Input");
+        return;
+    }
+    var bin = '';
+    for (var i = 0; i < input.length; i += 8)
+        bin += String.fromCharCode(parseInt(input.substr(i, 8), 2));
+    $('#binresult').text(bin);
+});
+
+</script>
+{% endblock scripts%}
